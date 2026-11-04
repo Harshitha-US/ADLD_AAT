@@ -1,0 +1,14 @@
+module ring_counter_tb;
+    reg clk = 0, rst = 1;
+    wire [3:0] q;
+
+    ring_counter dut (.clk(clk), .rst(rst), .q(q));
+
+    always #5 clk = ~clk;
+
+    initial begin
+        $monitor("t=%0t rst=%b q=%b", $time, rst, q);
+        #12 rst = 0;
+        #100 $finish;
+    end
+endmodule
