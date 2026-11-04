@@ -1,0 +1,17 @@
+`timescale 1ns/1ps
+module tb_barrel_shifter4;
+reg [3:0] data;
+reg [1:0] shamt;
+reg dir;
+wire [3:0] y;
+barrel_shifter4 dut(.data(data), .shamt(shamt), .dir(dir), .y(y));
+initial begin
+    data=4'b1011; dir=0;
+    shamt=0; #10; $display("left shift 0: %b",y);
+    shamt=1; #10; $display("left shift 1: %b",y);
+    shamt=2; #10; $display("left shift 2: %b",y);
+    dir=1; shamt=1; #10; $display("right shift 1: %b",y);
+    shamt=2; #10; $display("right shift 2: %b",y);
+    $finish;
+end
+endmodule
