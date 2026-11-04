@@ -1,0 +1,14 @@
+`timescale 1ns/1ps
+module tb_comparator4;
+reg [3:0] A, B;
+wire gt, eq, lt;
+comparator4 dut(.A(A), .B(B), .gt(gt), .eq(eq), .lt(lt));
+initial begin
+    A=4'd9; B=4'd4; #10; $display("A>B: gt=%b eq=%b lt=%b",gt,eq,lt);
+    A=4'd5; B=4'd5; #10; $display("A=B: gt=%b eq=%b lt=%b",gt,eq,lt);
+    A=4'd2; B=4'd11; #10; $display("A<B: gt=%b eq=%b lt=%b",gt,eq,lt);
+    $finish;
+end
+endmodule
+
+
